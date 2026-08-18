@@ -1,0 +1,40 @@
+<footer class="bg-gray-900 py-20">
+	<div class="px-5 container mx-auto">
+		<div class="text-gray-400 space-y-3 text-sm sm:text-base">
+			<div class="flex flex-wrap gap-2 text-sm sm:text-base">
+				<div>상호: {{ .Site.Params.Store.Name }}</div>
+				<div>|</div>
+				<div>주소: {{ .Site.Params.Store.Address }}</div>
+				<div>|</div>
+				<div>호스팅사업자: Asia/Seoul EC2 AWS(Amazon Web Services Inc.)</div>
+			</div>
+			<div class="flex flex-wrap gap-2 text-sm sm:text-base">
+				{{ with .Site.Params.Store.Tel }}
+				<div>
+					<span>전화: </span>
+					<a href="tel:{{ . }}" class="underline">{{ . }}</a>
+				</div>
+				{{ end }}
+				{{ if and (ne .Site.Params.Store.Social.KakaoTalk.Id "") (ne .Site.Params.Store.Social.KakaoTalk.Link "") }}
+					{{ with .Site.Params.Store.Social.KakaoTalk }}
+					<div>|</div>
+					<div>
+						<span>카카오톡: </span>
+						<a href="{{ .Link }}" class="underline" target="_blank" rel="nofollow">{{ .Id }}</a>
+					</div>
+					{{ end }}
+				{{ end }}
+				{{ if and (ne .Site.Params.Store.Social.Telegram.Id "") (ne .Site.Params.Store.Social.Telegram.Link "") }}
+					{{ with .Site.Params.Store.Social.Telegram }}
+					<div>|</div>
+					<div>
+						<span>텔레그램: </span>
+						<a href="{{ .Link }}" class="underline" target="_blank" rel="nofollow">{{ .Id }}</a>
+					</div>
+					{{ end }}
+				{{ end }}
+			</div>
+			<div>copyright © {{ time.Now.Format "2006" }} {{ .Site.Params.Store.Location }} {{ .Site.Params.Store.Category }} {{ .Site.Params.Store.Name }}. all rights reserved.</div>
+		</div>
+	</div>
+</footer>

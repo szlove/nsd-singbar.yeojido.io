@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
+
+.animate-gradient {
+  background-size: 300%;
+  -webkit-animation: animatedgradient 5s ease infinite alternate;
+  -moz-animation: animatedgradient 5s ease infinite alternate;
+  animation: animatedgradient 5s ease infinite alternate;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fade-up {
+	-webkit-animation: fade-up 0.5s ease forwards;
+	-moz-animation: fade-up 0.5s ease forwards;
+	animation: fade-up 0.5s ease forwards;
+}
+
+@keyframes fade-up {
+  0% {
+	opacity: 0;
+	transform: translateY(10px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+	-webkit-animation: fade-in 2s ease forwards;
+	-moz-animation: fade-in 2s ease forwards;
+	animation: fade-in 2s ease forwards;
+}
+
+@keyframes fade-in {
+  0% {
+	opacity: 0;
+  }
+  100% {
+	opacity: 1;
+  }
+}
+
+#hero-slides .hero-slide {
+	transform: scale(1);
+	transform-origin: center center;
+	will-change: opacity, transform;
+}
+
+#hero-slides .hero-slide.is-zooming {
+	animation: hero-kenburns 3.2s linear forwards;
+}
+
+@keyframes hero-kenburns {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.12);
+	}
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* IE and Edge */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+  }
+
+  /* Firefox */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}

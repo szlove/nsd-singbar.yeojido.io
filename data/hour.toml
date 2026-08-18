@@ -1,0 +1,21 @@
+[[days]]
+  name = "월요일"
+  hours = "18:00-15:00"
+[[days]]
+  name = "화요일"
+  hours = "18:00-15:00"
+[[days]]
+  name = "수요일"
+  hours = "18:00-15:00"
+[[days]]
+  name = "목요일"
+  hours = "18:00-15:00"
+[[days]]
+  name = "금요일"
+  hours = "18:00-15:00"
+[[days]]
+  name = "토요일"
+  hours = "18:00-15:00"
+[[days]]
+  name = "일요일"
+  hours = "18:00-15:00"

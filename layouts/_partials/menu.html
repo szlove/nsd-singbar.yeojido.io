@@ -1,0 +1,65 @@
+<div class="fixed top-5 right-5 z-100 bg-gray-900/80rounded-lg rounded-xl border border-gray-500/50 bg-gradient-to-br from-blue-500 to-[#00bb55]">
+	<div id="menu-header" class="flex items-center justify-end space-x-1 text-white py-3 px-5 cursor-pointer">
+		<div class="sm:text-lg font-semibold">메뉴</div>
+		<div id="icon-menu-deep">
+			{{ partial "icon/menu-deep" "w-5 sm:w-6" }}
+		</div>
+		<div id="icon-menu-x" hidden>
+			{{ partial "icon/x" "w-5 sm:w-6" }}
+		</div>
+	</div>
+	<div id="menu-body" class="mt-10 pt-3 pb-10 px-5 min-w-[250px]" hidden>
+		<nav class="text-white sm:text-lg font-semibold space-y-3">
+			<button type="button" data-target="header" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">홈</button>
+			<button type="button" data-target="#nav-about" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">{{ .Site.Params.Store.Location }} {{ .Site.Params.Store.Category }} 소개</button>
+			<button type="button" data-target="#nav-search" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">{{ .Site.Params.Store.Category }} 정보 탐색</button>
+			<button type="button" data-target="#nav-event" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">할인 & 무료 이벤트</button>
+			<button type="button" data-target="#nav-hours" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">영업 시간</button>
+			<button type="button" data-target="#nav-price" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">인원수별 가격</button>
+			<button type="button" data-target="#nav-map" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">오시는 길</button>
+			<button type="button" data-target="#nav-cs" class="block w-full text-right border-b-1 border-white/0 hover:border-white cursor-pointer" onclick="handleNavButtonClick(event)">{{ .Site.Params.Store.Category }} 예약문의</button>
+			<div class="mt-10 space-y-3">
+				<a class="block w-full text-right border-b-1 border-white/0 hover:border-white flex items-center justify-end space-x-2 opacity-50 cursor-not-allowed">
+					<img class="w-7" src="/national_flag/USA.png" alt="usa">
+					<div>USA</div>
+				</a>
+				<a class="block w-full text-right border-b-1 border-white/0 hover:border-white flex items-center justify-end space-x-2 opacity-50 cursor-not-allowed">
+					<img class="w-7" src="/national_flag/CHN.png" alt="chn">
+					<div>CHN</div>
+				</a>
+				<a class="block w-full text-right border-b-1 border-white/0 hover:border-white flex items-center justify-end space-x-2 opacity-50 cursor-not-allowed">
+					<img class="w-7" src="/national_flag/JPN.png" alt="jpn">
+					<div>JPN</div>
+				</a>
+			</div>
+		</nav>
+	</div>
+	<script>
+	{
+		let $header = document.querySelector("#menu-header")
+		let $iconMenuDeep = document.querySelector("#icon-menu-deep")
+		let $iconMenuX = document.querySelector("#icon-menu-x")
+		let $body = document.querySelector("#menu-body")
+		$header.addEventListener("click", () => {
+			if ($body.hasAttribute("hidden")) {
+				$iconMenuDeep.setAttribute("hidden", "")
+				$iconMenuX.removeAttribute("hidden")
+				$body.removeAttribute("hidden")
+			} else {
+				$iconMenuDeep.removeAttribute("hidden")
+				$iconMenuX.setAttribute("hidden", "")
+				$body.setAttribute("hidden", "")
+			}
+		})
+		function handleNavButtonClick(event) {
+			let targetQuery = event.currentTarget.getAttribute("data-target")
+			let $target = document.querySelector(targetQuery)
+			if ($target == null) { return }
+			$target.scrollIntoView({behavior: "smooth"})
+			document.querySelector("#icon-menu-deep").removeAttribute("hidden")
+			document.querySelector("#icon-menu-x").setAttribute("hidden", "")
+			document.querySelector("#menu-body").setAttribute("hidden", "")
+		}
+	}
+	</script>
+</div>

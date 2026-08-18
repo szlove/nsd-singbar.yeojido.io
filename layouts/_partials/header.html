@@ -1,0 +1,133 @@
+<header id="nav-home" class="h-full relative">
+	<div id="hero-slides" class="absolute top-0 left-0 w-full h-full -z-10 brightness-[0.20] overflow-hidden" aria-hidden="true">
+		<img class="hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-100" src="/cover.png" alt="">
+		{{ range $n := seq 1 6 }}
+		<img class="hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-0" src="{{ printf "/hostess/hostess-%02d.png" $n }}" alt="">
+		{{ end }}
+	</div>
+	<div class="container mx-auto px-3 pt-8 animate-fade-up">
+		<img src="/logo.png" alt="{{ .Site.Params.Store.Location }} {{ .Site.Params.Store.Name }} {{ .Site.Params.Store.Category }} 로고" class="w-[70px] mx-auto text-[#00bb55]">
+		<div class="text-center mt-4 space-y-2">
+			<div class="inline-block text-5xl font-medium bg-gradient-to-r from-orange-700 via-blue-500 to-[#00bb55] text-transparent bg-clip-text animate-gradient">{{ upper .Site.Params.Store.LocationEn }} {{ upper .Site.Params.Store.CategoryEn }}</div>
+			<div class="text-3xl text-white italic font-medium [text-shadow:_1px_1px_20px_rgba(255,255,255,0.8)] animate-fade-in">{{ upper .Site.Params.Store.NameEn }}</div>
+		</div>
+	</div>
+	<div class="container mx-auto px-3 mt-20 text-center space-y-1 animate-fade-in">
+		<div class="text-lg text-[#00bb55] font-semibold bg-gradient-to-r from-orange-700 via-blue-500 to-[#00bb55] text-transparent bg-clip-text animate-gradient">{{ .Site.Params.Store.Location }} {{ .Site.Params.Store.Category }}</div>
+		<div class="text-4xl text-white font-semibold [text-shadow:_1px_1px_20px_rgba(255,255,255,0.8)]">{{ .Site.Params.Store.Name }}</div>
+	</div>
+	<div class="mt-10 mx-auto lg:flex lg:justify-center lg:space-x-1 animate-fade-in">
+		<div class="mx-auto lg:mx-0 rounded-lg py-3 px-4 w-full max-w-[300px] bg-gray-900/80 backdrop-blur-sm divide-y-1 divide-gray-500/50">
+			{{ with .Site.Data.price.base.person1 }}
+				<div class="py-2 flex justify-between items-center">
+					<div class="flex items-center space-x-1">
+						{{ partial "icon/crown" "w-5 text-[#00bb55]" }}
+						<div class="text-white font-bold">{{ .name }}</div>
+					</div>
+					<div class="text-yellow-500">
+					{{- if eq .price 0 -}}
+						₩문의
+					{{- else -}}
+						₩{{ .price | lang.FormatNumber 0 }}
+					{{- end -}}
+					</div>
+				</div>
+			{{ end }}
+			{{ with .Site.Data.price.base.person2 }}
+				<div class="py-2 flex justify-between items-center">
+					<div class="flex items-center space-x-1">
+						{{ partial "icon/crown" "w-5 text-[#00bb55]" }}
+						<div class="text-white font-bold">{{ .name }}</div>
+					</div>
+					<div class="text-yellow-500">
+					{{- if eq .price 0 -}}
+						₩문의
+					{{- else -}}
+						₩{{ .price | lang.FormatNumber 0 }}
+					{{- end -}}
+					</div>
+				</div>
+			{{ end }}
+			{{ with .Site.Data.price.base.person3 }}
+				<div class="py-2 flex justify-between items-center">
+					<div class="flex items-center space-x-1">
+						{{ partial "icon/crown" "w-5 text-[#00bb55]" }}
+						<div class="text-white font-bold">{{ .name }}</div>
+					</div>
+					<div class="text-yellow-500">
+					{{- if eq .price 0 -}}
+						₩문의
+					{{- else -}}
+						₩{{ .price | lang.FormatNumber 0 }}
+					{{- end -}}
+					</div>
+				</div>
+			{{ end }}
+			{{ with .Site.Data.price.base.person4 }}
+				<div class="py-2 flex justify-between items-center">
+					<div class="flex items-center space-x-1">
+						{{ partial "icon/crown" "w-5 text-[#00bb55]" }}
+						<div class="text-white font-bold">{{ .name }}</div>
+					</div>
+					<div class="text-yellow-500">
+					{{- if eq .price 0 -}}
+						₩문의
+					{{- else -}}
+						₩{{ .price | lang.FormatNumber 0 }}
+					{{- end -}}
+					</div>
+				</div>
+			{{ end }}
+		</div>
+	</div>
+	<div class="mt-10 animate-fade-up pb-20">
+		{{ if .Site.Params.IsAdsEnabled }}
+		<a class="block w-fit mx-auto px-6 py-3 bg-gradient-to-br from-blue-500 to-[#00bb55] hover:bg-sky-400 text-white font-semibold rounded-full [box-shadow:_1px_1px_20px_rgba(0,166,244,0.8)] hover:[box-shadow:_1px_1px_10px_rgba(0,166,244,0.8)] duration-300 flex space-x-1" href="tel:{{ .Site.Params.Store.Tel }}" rel="nofollow">
+			{{ partial "icon/phone" "w-5" }}
+			<span>바로 전화문의 하기</span>
+		</a>
+		{{ else }}
+		<a class="block w-fit mx-auto px-6 py-3 bg-gradient-to-br from-blue-500 to-[#00bb55] hover:bg-sky-400 text-white font-semibold rounded-full [box-shadow:_1px_1px_20px_rgba(0,166,244,0.8)] hover:[box-shadow:_1px_1px_10px_rgba(0,166,244,0.8)] duration-300 flex space-x-1" href="https://t.me/{{ .Site.Params.AdsTelegramId }}" rel="nofollow" target="_blank">
+			{{ partial "icon/telegram" "w-5" }}
+			<span>광고임대 텔레그램 문의</span>
+		</a>
+		{{ end }}
+	</div>
+	<div class="-z-10 absolute left-0 -bottom-12 w-full h-[100px] bg-gradient-to-b from-black/0 via-black to-black"></div>
+	<script>
+	{
+		const slides = Array.from(document.querySelectorAll("#hero-slides .hero-slide"))
+		if (slides.length > 1) {
+			let i = 0
+			const fadeMs = 800
+			const holdMs = 3200
+			const activate = (el) => {
+				el.classList.remove("is-zooming")
+				void el.offsetWidth
+				el.classList.add("is-zooming")
+			}
+			slides.forEach((el, idx) => {
+				el.style.transition = `opacity ${fadeMs}ms ease-in-out`
+				el.style.opacity = idx === 0 ? "1" : "0"
+				el.style.zIndex = idx === 0 ? "2" : "1"
+			})
+			activate(slides[0])
+			setInterval(() => {
+				const cur = slides[i]
+				const nextIdx = (i + 1) % slides.length
+				const next = slides[nextIdx]
+				next.style.zIndex = "3"
+				activate(next)
+				next.style.opacity = "1"
+				cur.style.opacity = "0"
+				setTimeout(() => {
+					cur.classList.remove("is-zooming")
+					cur.style.zIndex = "1"
+					next.style.zIndex = "2"
+				}, fadeMs)
+				i = nextIdx
+			}, holdMs)
+		}
+	}
+	</script>
+</header>

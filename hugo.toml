@@ -1,0 +1,53 @@
+baseURL = 'https://nsd-singbar.yeojido.io/'
+languageCode = 'ko-KR'
+title = '낙성대 노래빠 누벨: NOUVEL'
+
+[params]
+  isAdsEnabled = true
+  adsTelegramId = "ggyuvely"
+
+  description = '낙성대 노래빠 누벨은 관악구 신림동 1432-73에서 운영되는 노래빠 업소로, 낙성대·사당에서 가볍게 노래를 즐기려는 분들이 자주 찾는다.'
+  author = '두리'
+  datePublished = "2026-08-18T08:50:00+09:00"
+  dateModified = "2026-08-18T08:50:00+09:00"
+  [params.store]
+  tel = "010-8306-5747"
+  location = "낙성대"
+  locationEn = "NSD"
+  name = "누벨"
+  nameEn = "NOUVEL"
+  category = "노래빠"
+  categoryEn = "Singbar"
+  address = "서울 관악구 신림동 1432-73"
+  googleMapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.9389462868885!2d126.9291926!3d37.4857671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9fbeee0c8b81%3A0x2da5e9f783aed763!2z7ISc7Jq47Yq567OE7IucIOq0gOyVheq1rCDsi6Drprzrj5kgMTQzMi03Mw!5e0!3m2!1sko!2skr!4v1762322947738!5m2!1sko!2skr"
+	[params.store.social.kakaoTalk]
+	  id = ""
+	  link = ""
+	[params.store.social.telegram]
+    id = ""
+    link = ""
+
+enableRobotsTXT = false
+cleanDestinationDir = true
+
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+[module]
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
