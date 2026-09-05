@@ -18,8 +18,8 @@ title = '낙성대 노래빠 누벨: NOUVEL'
   nameEn = "NOUVEL"
   category = "노래빠"
   categoryEn = "Singbar"
-  address = "서울 관악구 신림동 1432-73"
-  googleMapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.9389462868885!2d126.9291926!3d37.4857671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9fbeee0c8b81%3A0x2da5e9f783aed763!2z7ISc7Jq47Yq567OE7IucIOq0gOyVheq1rCDsi6Drprzrj5kgMTQzMi03Mw!5e0!3m2!1sko!2skr!4v1762322947738!5m2!1sko!2skr"
+  address = "서울 관악구"
+  googleMapSrc = "https://www.google.com/maps?q=서울+관악구&output=embed"
 	[params.store.social.kakaoTalk]
 	  id = ""
 	  link = ""
