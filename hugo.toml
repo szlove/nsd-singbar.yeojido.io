@@ -1,6 +1,6 @@
 baseURL = 'https://nsd-singbar.yeojido.io/'
 languageCode = 'ko-KR'
-title = '낙성대 노래빠 누벨: NOUVEL'
+title = '낙성대 노래빠 누벨 NOUVEL 최신 정보'
 
 [params]
   isAdsEnabled = true
