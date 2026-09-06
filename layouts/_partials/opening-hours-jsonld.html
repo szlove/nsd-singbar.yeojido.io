@@ -1,0 +1,49 @@
+{{- /*
+  영업시간 데이터(.Site.Data.hour.days 또는 .Site.Data.hours.days, TOML [[days]] 배열)를 받아
+  Schema.org OpeningHoursSpecification 객체(dict)들의 슬라이스를 반환한다(문자열이 아니라 값).
+  호출하는 쪽에서 jsonify | safeJS로 감싼다:
+    "openingHoursSpecification": {{ partial "opening-hours-jsonld.html" .Site.Data.hour.days | jsonify | safeJS }}
+
+  값을 문자열로 미리 굳히지 않고 슬라이스로 반환하는 이유 — Go html/template의 컨텍스트 인식
+  이스케이퍼가 partial 반환값(부분 렌더된 문자열)을 다시 JS 컨텍스트에 끼워 넣을 때 이중 이스케이프를
+  일으키는 것을 확인했다(2026-09-06 실측, 이 파일 도입 중). 값 자체를 반환하고 호출부에서
+  한 번에 jsonify하면 이 문제가 없다.
+
+  스키마 셋을 자동 판별한다(오늘 실측, 사이트마다 혼재):
+    hours: "HH:MM-HH:MM" 또는 "휴무"
+    range: "HH:MM-HH:MM"(빈 문자열이면 휴무로 봄)
+    part1/part2: 각각 "HH:MM-HH:MM" 또는 빈 문자열(휴무)
+  1부/2부가 있는 날은 OpeningHoursSpecification 두 개로 나눠 선언한다(구글이 두 구간을 각각 인식).
+  자정을 넘기는 구간(예: opens 18:00, closes 05:00)은 closes < opens 형태 그대로 둔다 —
+  schema.org 관례상 이 형태가 "자정을 넘겨 다음날까지"를 뜻한다(별도 표기 불필요).
+  휴무일은 스펙 자체를 만들지 않는다(생략) — schema.org에 "명시적 휴무"를 표현하는 표준 필드가
+  없어 택한 관례이며, 이 판단은 이 파일이 스스로 밝힌다(문헌 대응 없음, 정본 근거 없음).
+*/ -}}
+{{- $dowMap := dict "월요일" "https://schema.org/Monday" "화요일" "https://schema.org/Tuesday" "수요일" "https://schema.org/Wednesday" "목요일" "https://schema.org/Thursday" "금요일" "https://schema.org/Friday" "토요일" "https://schema.org/Saturday" "일요일" "https://schema.org/Sunday" -}}
+{{- $specs := slice -}}
+{{- range $day := . -}}
+  {{- $dow := "" -}}
+  {{- range $key, $val := $dowMap -}}
+    {{- if strings.HasPrefix $day.name $key -}}{{- $dow = $val -}}{{- end -}}
+  {{- end -}}
+  {{- if $dow -}}
+    {{- $intervals := slice -}}
+    {{- if and (isset $day "hours") (ne $day.hours "휴무") (ne $day.hours "") -}}
+      {{- $intervals = $intervals | append $day.hours -}}
+    {{- else if and (isset $day "range") (ne $day.range "") (ne $day.range "휴무") -}}
+      {{- $intervals = $intervals | append $day.range -}}
+    {{- else -}}
+      {{- range $pk := slice "part1" "part2" -}}
+        {{- $v := index $day $pk -}}
+        {{- if and $v (ne $v "") -}}{{- $intervals = $intervals | append $v -}}{{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- range $interval := $intervals -}}
+      {{- $parts := split $interval "-" -}}
+      {{- if eq (len $parts) 2 -}}
+        {{- $specs = $specs | append (dict "@type" "OpeningHoursSpecification" "dayOfWeek" $dow "opens" (index $parts 0) "closes" (index $parts 1)) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $specs -}}

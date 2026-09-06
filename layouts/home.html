@@ -125,6 +125,10 @@
 				<div class="h-[1px] bg-gradient-to-r from-[#00bb55] via-[#00bb55]/70 to-black _section_bar" style="width: 0px;"></div>
 				<h2 class="text-lg sm:text-2xl italic font-bold text-[#00bb55] [text-shadow:_1px_1px_20px_rgba(0,187,85,0.8)]" style="opacity: 0;">{{ .Site.Params.Store.Location }} {{ .Site.Params.Store.Category }} 영업 시간</h2>
 			</div>
+			<div class="mt-4">
+				<span id="business-status-display" class="inline-block rounded-full px-3 py-1 text-sm font-bold bg-[#00bb55]/20 text-[#00bb55]">영업시간 확인 중</span>
+				<script type="application/json" id="business-status-data">{{ (dict "storeStatus" (.Site.Params.Store.Status | default "운영중") "days" .Site.Data.hour.days) | jsonify | safeJS }}</script>
+			</div>
 			<div class="mt-8 space-y-3">
 				<h3 class="text-2xl sm:text-4xl font-extrabold text-white">요일별 {{ .Site.Params.Store.Category }} 이용시간</h3>
 				<article class="text-sm sm:text-base text-gray-200 space-y-2">
