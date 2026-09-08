@@ -7,19 +7,19 @@ title = '낙성대 노래빠 누벨 NOUVEL 최신 정보'
   adsTelegramId = "ggyuvely"
 
   description = '어딘가에서 술자리를 한 번 거치고 나온 뒤, 마무리 삼아 들르는 곳으로 누벨이 자주 꼽힙니다. 노래빠라는 업종 자체가 음향이나 접객보다 짧은 체류에 초점을 두다 보니, 대여섯 명이 몰려오는 큰 모임보다 두어 명이 스치듯 들르는 경우가 훨씬 많습니다. 딱딱한 격식을 요구하지 않는다는 점이 이 업종의 문턱을 낮추는 요소입니다.'
-  author = '두리'
+  author = '누벨'
   datePublished = "2026-08-18T08:50:00+09:00"
   dateModified = "2026-08-18T08:50:00+09:00"
   [params.store]
-  tel = "010-8306-5747"
+  tel = "010-7456-5410"
   location = "낙성대"
   locationEn = "NSD"
   name = "누벨"
   nameEn = "NOUVEL"
   category = "노래빠"
   categoryEn = "Singbar"
-  address = "서울 관악구"
-  googleMapSrc = "https://www.google.com/maps?q=서울+관악구&output=embed"
+  address = "서울 관악구 봉천동"
+  googleMapSrc = "https://www.google.com/maps?q=서울+관악구+봉천동&output=embed"
 	[params.store.social.kakaoTalk]
 	  id = ""
 	  link = ""
