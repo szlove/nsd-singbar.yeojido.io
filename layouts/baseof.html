@@ -29,31 +29,23 @@
 	<meta itemprop="dateModified" content="{{ .Site.Params.DateModified }}">
 
 	<script type="application/ld+json">
-	{{ dict
-		"@context" "https://schema.org/"
-		"@type" "WebSite"
-		"name" .Site.Title
-		"url" .Permalink
-		"image" (printf "%scover.png" .Permalink)
-	| jsonify | safeJS }}
-	</script>
+	{{ $jldWeb := dict "@context" "https://schema.org/" "@type" "WebSite" "url" .Permalink "image" (printf "%scover.png" .Permalink) -}}
+	{{- /* 값이 빈 필드는 키를 내지 않는다 (jsonld_transform.py) */ -}}
+	{{- if strings.TrimSpace (string .Site.Title) }}{{ $jldWeb = merge $jldWeb (dict "name" .Site.Title) }}{{ end -}}
+	{{- $jldWeb | jsonify | safeJS }}
+	</script>{{ if or (strings.TrimSpace (string .Site.Params.Store.Address)) (strings.TrimSpace (string .Site.Params.Store.Location)) }}
 	<script type="application/ld+json">
-	{{ dict
-		"@context" "http://schema.org"
-		"@type" "LocalBusiness"
-		"name" .Site.Title
-		"image" (printf "%scover.png" .Permalink)
-		"address" (dict
-			"@type" "PostalAddress"
-			"streetAddress" .Site.Params.Store.Address
-			"addressLocality" .Site.Params.Store.Location
-			"addressCountry" "KR"
-		)
-		"telephone" .Site.Params.Store.Tel
-		"url" .Permalink
-		"openingHoursSpecification" (partial "opening-hours-jsonld.html" .Site.Data.hour.days)
-	| jsonify | safeJS }}
-	</script>
+	{{ $jldLb := dict "@context" "http://schema.org" "@type" "LocalBusiness" "image" (printf "%scover.png" .Permalink) "url" .Permalink -}}
+	{{- /* 값이 빈 필드는 키를 내지 않는다 (jsonld_transform.py) */ -}}
+	{{- $jldAddr := dict "@type" "PostalAddress" "addressCountry" "KR" -}}
+	{{- if strings.TrimSpace (string .Site.Params.Store.Address) }}{{ $jldAddr = merge $jldAddr (dict "streetAddress" .Site.Params.Store.Address) }}{{ end -}}
+	{{- if strings.TrimSpace (string .Site.Params.Store.Location) }}{{ $jldAddr = merge $jldAddr (dict "addressLocality" .Site.Params.Store.Location) }}{{ end -}}
+	{{- $jldLb = merge $jldLb (dict "address" $jldAddr) -}}
+	{{- if strings.TrimSpace (string .Site.Title) }}{{ $jldLb = merge $jldLb (dict "name" .Site.Title) }}{{ end -}}
+	{{- if strings.TrimSpace (string .Site.Params.Store.Tel) }}{{ $jldLb = merge $jldLb (dict "telephone" .Site.Params.Store.Tel) }}{{ end -}}
+	{{- with partial "opening-hours-jsonld.html" (.Site.Data.hour | default (dict)).days }}{{ $jldLb = merge $jldLb (dict "openingHoursSpecification" .) }}{{ end -}}
+	{{- $jldLb | jsonify | safeJS }}
+	</script>{{ end }}
 
 	<link rel="preconnect" href="https://rsms.me/">
 	<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
