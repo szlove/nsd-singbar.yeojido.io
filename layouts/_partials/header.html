@@ -1,8 +1,8 @@
 <header id="nav-home" class="h-full relative">
 	<div id="hero-slides" class="absolute top-0 left-0 w-full h-full -z-10 brightness-[0.20] overflow-hidden" aria-hidden="true">
-		<img class="hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-100" src="/cover.png" alt="{{ .Site.Params.Store.Location }} {{ .Site.Params.Store.Name }} 이미지 1">
+		<img class="hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-100" src="/cover.png" alt="">
 		{{ range $n := seq 1 6 }}
-		<img class="hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-0" src="{{ printf "/hostess/hostess-%02d.png" $n }}" alt="{{ .Site.Params.Store.Location }} {{ .Site.Params.Store.Name }} 이미지 {{ add $n 1 }}">
+		<img class="hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-0" src="{{ printf "/hostess/hostess-%02d.png" $n }}" alt="">
 		{{ end }}
 	</div>
 	<div class="container mx-auto px-3 pt-8 animate-fade-up">
