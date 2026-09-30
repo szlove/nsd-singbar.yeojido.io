@@ -22,13 +22,13 @@
 				<div class="py-2 flex justify-between items-center">
 					<div class="flex items-center space-x-1">
 						{{ partial "icon/crown" "w-5 text-[#00bb55]" }}
-						<div class="text-white font-bold">{{ .name }}</div>
+						<div class="text-white font-bold">{{ .name }} 합계</div>
 					</div>
 					<div class="text-yellow-500">
 					{{- if eq .price 0 -}}
-						₩문의
+						문의
 					{{- else -}}
-						₩{{ .price | lang.FormatNumber 0 }}
+						₩{{ .price | lang.FormatNumber 0 }} <span class="text-sm text-gray-200">(1인당 {{ if eq (mod .price 2) 0 }}₩{{ div .price 2 | lang.FormatNumber 0 }}{{ else }}약 ₩{{ mul (div (add (div .price 2) 500) 1000) 1000 | lang.FormatNumber 0 }}{{ end }})</span>
 					{{- end -}}
 					</div>
 				</div>
@@ -37,13 +37,13 @@
 				<div class="py-2 flex justify-between items-center">
 					<div class="flex items-center space-x-1">
 						{{ partial "icon/crown" "w-5 text-[#00bb55]" }}
-						<div class="text-white font-bold">{{ .name }}</div>
+						<div class="text-white font-bold">{{ .name }} 합계</div>
 					</div>
 					<div class="text-yellow-500">
 					{{- if eq .price 0 -}}
-						₩문의
+						문의
 					{{- else -}}
-						₩{{ .price | lang.FormatNumber 0 }}
+						₩{{ .price | lang.FormatNumber 0 }} <span class="text-sm text-gray-200">(1인당 {{ if eq (mod .price 3) 0 }}₩{{ div .price 3 | lang.FormatNumber 0 }}{{ else }}약 ₩{{ mul (div (add (div .price 3) 500) 1000) 1000 | lang.FormatNumber 0 }}{{ end }})</span>
 					{{- end -}}
 					</div>
 				</div>
@@ -52,13 +52,13 @@
 				<div class="py-2 flex justify-between items-center">
 					<div class="flex items-center space-x-1">
 						{{ partial "icon/crown" "w-5 text-[#00bb55]" }}
-						<div class="text-white font-bold">{{ .name }}</div>
+						<div class="text-white font-bold">{{ .name }} 합계</div>
 					</div>
 					<div class="text-yellow-500">
 					{{- if eq .price 0 -}}
-						₩문의
+						문의
 					{{- else -}}
-						₩{{ .price | lang.FormatNumber 0 }}
+						₩{{ .price | lang.FormatNumber 0 }} <span class="text-sm text-gray-200">(1인당 {{ if eq (mod .price 4) 0 }}₩{{ div .price 4 | lang.FormatNumber 0 }}{{ else }}약 ₩{{ mul (div (add (div .price 4) 500) 1000) 1000 | lang.FormatNumber 0 }}{{ end }})</span>
 					{{- end -}}
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 					</div>
 					<div class="text-yellow-500">
 					{{- if eq .price 0 -}}
-						₩문의
+						문의
 					{{- else -}}
 						₩{{ .price | lang.FormatNumber 0 }}
 					{{- end -}}

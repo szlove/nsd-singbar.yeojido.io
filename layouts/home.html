@@ -192,31 +192,31 @@
 								{{ if ne .person1.price 0 }}
 								<p class="text-yellow-500 font-semibold">₩{{ .person1.price | lang.FormatNumber 0 }}</p>
 								{{ else }}
-								<p class="text-yellow-500 font-semibold">₩문의</p>
+								<p class="text-yellow-500 font-semibold">문의</p>
 								{{ end }}
 							</li>
 							<li class="rounded-lg p-5 bg-gradient-to-r from-gray-800/50 via-gray-900/50 to-black space-y-1">
-								<h5 class="text-gray-100 font-bold">2인 가격</h5>
+								<h5 class="text-gray-100 font-bold">2인 합계</h5>
 								{{ if ne .person2.price 0 }}
-								<p class="text-yellow-500 font-semibold">₩{{ .person2.price | lang.FormatNumber 0 }}</p>
+								<p class="text-yellow-500 font-semibold">₩{{ .person2.price | lang.FormatNumber 0 }} <span class="text-sm text-gray-200">(1인당 {{ if eq (mod .person2.price 2) 0 }}₩{{ div .person2.price 2 | lang.FormatNumber 0 }}{{ else }}약 ₩{{ mul (div (add (div .person2.price 2) 500) 1000) 1000 | lang.FormatNumber 0 }}{{ end }})</span></p>
 								{{ else }}
-								<p class="text-yellow-500 font-semibold">₩문의</p>
+								<p class="text-yellow-500 font-semibold">문의</p>
 								{{ end }}
 							</li>
 							<li class="rounded-lg p-5 bg-gradient-to-r from-gray-800/50 via-gray-900/50 to-black space-y-1">
-								<h5 class="text-gray-100 font-bold">3명 가격</h5>
+								<h5 class="text-gray-100 font-bold">3인 합계</h5>
 								{{ if ne .person3.price 0 }}
-								<p class="text-yellow-500 font-semibold">₩{{ .person3.price | lang.FormatNumber 0 }}</p>
+								<p class="text-yellow-500 font-semibold">₩{{ .person3.price | lang.FormatNumber 0 }} <span class="text-sm text-gray-200">(1인당 {{ if eq (mod .person3.price 3) 0 }}₩{{ div .person3.price 3 | lang.FormatNumber 0 }}{{ else }}약 ₩{{ mul (div (add (div .person3.price 3) 500) 1000) 1000 | lang.FormatNumber 0 }}{{ end }})</span></p>
 								{{ else }}
-								<p class="text-yellow-500 font-semibold">₩문의</p>
+								<p class="text-yellow-500 font-semibold">문의</p>
 								{{ end }}
 							</li>
 							<li class="rounded-lg p-5 bg-gradient-to-r from-gray-800/50 via-gray-900/50 to-black space-y-1">
-								<h5 class="text-gray-100 font-bold text-base">4명 가격</h5>
+								<h5 class="text-gray-100 font-bold text-base">4인 합계</h5>
 								{{ if ne .person4.price 0 }}
-								<p class="text-yellow-500 font-semibold">₩{{ .person4.price | lang.FormatNumber 0 }}</p>
+								<p class="text-yellow-500 font-semibold">₩{{ .person4.price | lang.FormatNumber 0 }} <span class="text-sm text-gray-200">(1인당 {{ if eq (mod .person4.price 4) 0 }}₩{{ div .person4.price 4 | lang.FormatNumber 0 }}{{ else }}약 ₩{{ mul (div (add (div .person4.price 4) 500) 1000) 1000 | lang.FormatNumber 0 }}{{ end }})</span></p>
 								{{ else }}
-								<p class="text-yellow-500 font-semibold">₩문의</p>
+								<p class="text-yellow-500 font-semibold">문의</p>
 								{{ end }}
 							</li>
 						</ul>
